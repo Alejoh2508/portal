@@ -1,0 +1,28 @@
+<div class="container-fluid text-center">
+  <div class="card position-absolute top-50 start-50 translate-middle mt-1 bi bi-caret-down-fill" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">Iniciar Sesión</h5>
+      <form [formGroup]="frmLogin">
+        <div class="form-group">
+          <label>Usuario</label>
+          <input type="text" [(ngModel)]="datosLogin.user" formControlName="user" class="form-control"
+            [ngClass]="{ 'is-invalid': enviado && f.user.errors }" placeholder="Nick Name o Correo" />
+          <div *ngIf="enviado && f.user.errors" class="invalid-feedback">
+            <div *ngIf="f.user.errors.required">Por favor, ingrese su usuario</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" [(ngModel)]="datosLogin.password" formControlName="password" class="form-control"
+            [ngClass]="{ 'is-invalid': enviado && f.password.errors }" placeholder="********" />
+          <div *ngIf="enviado && f.password.errors" class="invalid-feedback">
+            <div *ngIf="f.password.errors.required">Por favor, ingrese su password</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <button style="margin: 10px" class="btn btn-success" (click)="f_IniciarSesion()"> Iniciar Sesión </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
