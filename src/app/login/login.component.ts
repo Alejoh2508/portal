@@ -34,10 +34,10 @@ export class LoginComponent implements OnInit {
     }
     this.servicioLogin.login(this.frmLogin.value.user, this.frmLogin.value.password)
       .pipe(map(res => {
-        if (res.resultado) {
+        if (!res.data[0].hasOwnProperty("mensaje")) {
           alert("Usuario Autenticado");
         } else {
-          alert("Usuario Invalido");
+          alert(res.data[0].mensaje);
         }
       }))
       .subscribe(

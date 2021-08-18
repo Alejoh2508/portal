@@ -15,8 +15,10 @@ export class ServicioLoginService {
 
   public login(user, password) {
     return this.httpClient.post<any>(this.sUrlApi + "/f_Login", { 'usuario': user, 'contrasenia': password }).pipe(map(result => {
-      this.setToken(result.data[0].cedula);
-      this.getLoggedInName.emit(true);
+      if (!result.data[0].hasOwnProperty("mensaje")) {
+        this.setToken(result.data[0].cedula);
+        this.getLoggedInName.emit(true);
+      }
       return result;
     }));
   }
